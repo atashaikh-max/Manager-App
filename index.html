@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Account Manager</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+	<h2>Account <span>Manager</span></h2>
+	<button class="btn btn-dark acc">A</button>
+</header>
+<div class="navigation">
+	<ul>
+		<li><a href="#"><i class="material-icons active">&#xe88a;</i>Home</a></li>
+
+		<li><a href="#"><i class="material-icons" onclick="openCustListPage()">&#xe7fb;</i>Customers</a></li>
+		
+		<li><a href="#"><i class="material-icons">&#xe853;</i>Account</a></li>
+
+		<li><a href="#"><i class="material-icons" onclick="openSettingPage()">&#xe8b8;</i>Setting</a></li>
+		
+		<li><a href="#"><i class="material-icons" onclick="openContactUS()">&#xe0ba;</i>Contact</a></li>
+								
+	</ul>
+</div>
+<div class="my-footer">
+	<input type="button" class="btn btn-primary" onclick="openCustFillUpPage()" value="Add Customers" name="">
+</div>
+
+	<!--Customer Fill Up Page-->
+
+	<div class="cust-fill-up-page" id="custFillUpPage">
+		<div class="container">
+			<form>
+			<div style="display: flex;justify-content: space-between;"><h2 style="font-size: 20px" class="display-4">Customer Details</h2><button class="btn btn-danger" onclick="closeCustFillPage()">&times;</button></div>
+			<hr>
+			<div>
+				<label>Customer Name:</label>
+				<input type="text" id="name" name="" placeholder="Customer Name.." required="" class="form-control mb-2">
+			</div>
+			<div>
+				<label>Mobile No:</label>
+				<input type="text" id="mobile" name="" placeholder="Mobile No.." required="" class="form-control mb-2">
+			</div>
+			<div>
+				<label>Amount you are giving:</label>
+				<input type="text" id="amountG" name="" placeholder="Amount.." required="" class="form-control mb-2">
+			</div>	
+			<input type="submit" value="Add" class="btn btn-primary mt-3" style="float: right;" onclick="addCust()" name="">
+			</form>			
+		</div>
+	</div>
+
+	<!--Customer List Page-->
+	<div style="position: absolute;top: 0;left: 0;width: 100vw;height: 100vh;z-index: 20;display: none;justify-content: center;align-items: center;background: #fff;" id="custPage">
+<div class="my-header" style="display: flex;justify-content: space-between;"><h3 class="display-4" style="font-size: 18px;">Customers</h3><button class="btn btn-danger" onclick="closeCustListPage()">&times;</button></div>
+<div class="scr-page" id="scrPage" style="scroll-behavior: smooth;overflow-y: scroll;position: absolute;top: 60px;">
+	</div>								
+</div>
+
+<!--Contact Us Page--->
+<div class="contact-page" id="contactPage">
+	<div style="position: fixed;top: 0;left: 0;padding: 10px 15px;background:#278ea5;width: 100%;display: flex;justify-content: space-between;"><h3 class="display-4" style="font-size: 22px;font-weight:200;color:#fff;">Account Manager</h3>
+		<button class="btn btn-light" onclick="closeContactUS()">&times;</button>
+	</div>
+		<main style="display: flex;justify-content: center;padding: 14px 8px;position: relative;top: -120px">
+			<p>&copy;Account Manager is owned by AtaShaikh.inc 2020. It is reminder of expenditure. This app has over 50 Million users all over the globe.</p>
+		</main>
+		<div class="icon" style="display: flex;align-self: center;position: absolute;padding: 5px;">
+			<a href="https://www.instagram.com/ata_sk_official/"><i class='fab fa-instagram' style='font-size:36px'></i></a>
+			<a href="https://m.facebook.com/shaikh.ata.3"><i class='fab fa-facebook-square' style='font-size:36px'></i></a>
+			<a href="https://twitter.com/shaikhata666"><i class='fab fa-twitter' style='font-size:36px'></i></a>
+		</div>
+</div>
+
+<!--Setting Page-->
+<div class="setting-page" id="settingPage">
+		<div style="position: fixed;top: 0;left: 0;padding: 10px 15px;background:#278ea5;width: 100%;display: flex;justify-content: space-between;"><h3 class="display-4" style="font-size: 22px;font-weight:200;color:#fff;">Settings</h3>
+		<button class="btn btn-light" onclick="closeSettingPage()">&times;</button></div><br>
+
+		<div class="div"><span>Dark Mode</span><input type="checkbox" class="dark-mode" name=""></div>
+		<div class="div"><span>Language:</span>
+			<select class="form-control" style="width: 120px;height: 38px;">
+			<option value="english">English US</option>
+			<option value="english">English UK</option>
+			<option value="urdu">Urdu</option>
+			<option value="hindi">Hindi</option>
+			<option value="french">french</option>
+			<option value="german">German</option>
+			<option value="spanish">Spanish</option>
+		</select>
+	</div>
+	<div class="div"><span>Version</span><span><code style="color: grey">V1.0.1</code></span></div>
+	<div class="div"><span>Check Updates</span><button class="btn btn-primary btn-sm" onclick="openCheckSoftUpdate()">Check</button></div>
+</div> 
+
+<div class="softwareUpdatePage" id="updatePage">
+	<div><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" width="100px" height="100px"></div>
+	<p>Checking Update...</p>
+</div>
+
+<script type="text/javascript">
+
+
+	function openCustFillUpPage(){
+		document.getElementById('custFillUpPage').style.display='flex';
+	}
+	function closeCustFillPage(){
+		document.getElementById('custFillUpPage').style.display='none';
+	}
+	function addCust(){
+		var name=document.getElementById('name');
+		var mobile=document.getElementById('mobile');
+		var amountG=document.getElementById('amountG');
+
+		var custName=document.getElementById('custName');
+		var custNum=document.getElementById('custNum');
+		var amountUG=document.getElementById('amountUG');
+		var amountRet=document.getElementById('amountRet');
+
+		var dynDiv=document.createElement('div');
+		dynDiv.classList.add('customer');
+		dynDiv.innerHTML=`<b>Name:</b><input type="text" value="${name.value}" class="form-control" disabled>
+			<b>Mobile:</b><input type="text" value="${mobile.value}" class="form-control" disabled>
+			<b style="color: green">Amount:</b><input type="text" value="${amountG.value}" class="form-control" disabled>
+			<b style="color: red">Amount Remaining:</b><input type="text" value="${amountG.value}" class="form-control" disabled>
+			<p><b>Date:</b>${displayDate()}</p><br>
+			<button class="btn btn-success" onclick="openUpdateForm(this)">Edit</button>
+			<button class="btn btn-primary" onclick="updateData(this)" style="display: none;">Update</button>
+			<button class="btn btn-danger" onclick='delRecord(this)'>Delete</button>`;
+		var scrPage=document.getElementById('scrPage');
+		scrPage.appendChild(dynDiv);
+		alert(name.value+' Added to your Customers Successfully!')
+		closeCustFillPage();
+
+	}
+
+	function openCustListPage(){
+		document.getElementById('custPage').style.display='flex';
+	}
+	function closeCustListPage(){
+		document.getElementById('custPage').style.display='none';
+	}
+	function delRecord(btn){
+		var name=document.getElementById('name');
+		let ans=confirm('Are you sure you want to delete this record?');
+		if (ans==true) {
+			btn.parentNode.style.display='none';
+			alert('Removed Successfully ')
+		}
+		else{
+			return false;
+		}
+		
+	}
+	function displayDate(){
+		var x=new Date();
+		var date=x.getDate();
+		var month=x.getMonth()+1;
+		var year=x.getFullYear();
+		var hour=x.getHours();
+		var min=x.getMinutes();
+		var sec=x.getSeconds();
+		var fullDate=date+'/'+month+'/'+year+' '+hour+':'+min+':'+sec;
+		return fullDate;
+	}
+
+	function openUpdateForm(btn){
+		//btn.parentNode..getElementsByClassName('form-control').disabled=false;
+		var inputFields=btn.parentNode.querySelectorAll('.form-control').length;
+		for(var i=0;i<inputFields;i++){
+			btn.parentNode.querySelectorAll('.form-control')[i].disabled=false;
+		}
+		btn.parentNode.querySelector('.btn-primary').style.display='inline-block';
+		btn.style.display='none';
+	}
+	function updateData(btn){
+		alert('Data Updated Successfully');
+		var inputFields=btn.parentNode.querySelectorAll('.form-control').length;
+		for(var i=0;i<inputFields;i++){
+			btn.parentNode.querySelectorAll('.form-control')[i].disabled=true;
+		}
+		btn.parentNode.querySelector('.btn-success').style.display='inline-block';
+		btn.style.display='none';
+
+	}
+
+	function openContactUS(){
+		document.getElementById('contactPage').style.display='flex';
+	}
+	function closeContactUS(){
+		document.getElementById('contactPage').style.display='none';
+	}
+	function openCheckSoftUpdate(){
+		document.getElementById('updatePage').style.display='flex';
+		setTimeout(closeSoftUpdatePage,5000);
+
+	}
+	function closeSoftUpdatePage(){
+		document.getElementById('updatePage').style.display='none';
+		alert('This is already the latest version');
+	}
+	function closeSettingPage(){
+		document.getElementById('settingPage').style.display='none';
+	}
+		function openSettingPage(){
+		document.getElementById('settingPage').style.display='flex';
+	}
+
+
+</script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</body>
+</html>
